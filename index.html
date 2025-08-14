@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Oktoberfest Countdown</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f8f4e3;
+      color: #333;
+      text-align: center;
+      padding: 50px;
+    }
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      color: #b30000;
+    }
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      font-size: 2em;
+    }
+    .time-box {
+      background: #fff;
+      border: 2px solid #b30000;
+      border-radius: 10px;
+      padding: 20px;
+      width: 100px;
+    }
+    .label {
+      font-size: 0.6em;
+      margin-top: 10px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Countdown to Oktoberfest 🎉</h1>
+  <div class="countdown">
+    <div class="time-box">
+      <div id="days">0</div>
+      <div class="label">Days</div>
+    </div>
+    <div class="time-box">
+      <div id="hours">0</div>
+      <div class="label">Hours</div>
+    </div>
+    <div class="time-box">
+      <div id="minutes">0</div>
+      <div class="label">Minutes</div>
+    </div>
+    <div class="time-box">
+      <div id="seconds">0</div>
+      <div class="label">Seconds</div>
+    </div>
+  </div>
+
+  <script>
+    const countdown = () => {
+      const targetDate = new Date("October 17, 2025 00:00:00").getTime();
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance < 0) {
+        document.getElementById("days").innerText = "0";
+        document.getElementById("hours").innerText = "0";
+        document.getElementById("minutes").innerText = "0";
+        document.getElementById("seconds").innerText = "0";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("days").innerText = days;
+      document.getElementById("hours").innerText = hours;
+      document.getElementById("minutes").innerText = minutes;
+      document.getElementById("seconds").innerText = seconds;
+    };
+
+    countdown(); // Initial call
+    setInterval(countdown, 1000); // Update every second
+  </script>
+
+</body>
+</html>
